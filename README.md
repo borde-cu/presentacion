@@ -32,7 +32,7 @@ Sitio web profesional para consultora urbana.
 
 ## 📞 Contacto
 
-- Email: bode.cu@gmail.com
+- Email: borde.cu@gmail.com
 - WhatsApp: +54 9 342 477-7230
 - Ubicación: Santa Fe, Argentina
 - LinkedIn: Datum Estudio
