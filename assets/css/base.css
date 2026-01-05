@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'ZalandoSans', sans-serif;
+  background: var(--light-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding-top: 80px; /* navbar fixed */
+  font-weight: 400;
+}
+
+section {
+  padding: 90px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.bold {
+  font-weight: 700;
+}
