@@ -88,7 +88,7 @@
         
         /* Navegación */
         nav {
-            background: var(--gradient-primary);
+            background: var(--secondary-color);
             position: fixed;
             top: 0;
             left: 0;
@@ -98,10 +98,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
         }
-        
-        nav.scrolled {
-            background: var(--primary-color);
-        }
+
         
         .nav-container {
             max-width: 1200px;
@@ -127,7 +124,15 @@
 	.logo-img {
     height: 48px;
     width: auto;
-    filter: invert(1) brightness(2);
+}
+
+.logo-in-text {
+    height: 8rem; /* Proporcional al tamaño del texto */
+    width: auto;
+    vertical-align: middle; /* Alineación con el texto */
+    margin-left: 0.3em; /* Espaciado del texto anterior */
+    display: inline-block;
+    filter: brightness(0) invert(1); /* Logo blanco si es necesario */
 }
         
         .nav-menu {
@@ -136,7 +141,7 @@
         }
         
         .nav-menu a {
-            color: white;
+            color: var(--primary-color);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s;
@@ -145,7 +150,7 @@
         }
         
         .nav-menu a:hover {
-            color: var(--accent-color);
+            color: var(--secondary-color);
         }
         
         .nav-menu a::after {
@@ -155,7 +160,7 @@
             height: 3px;
             bottom: 0;
             left: 0;
-            background-color: var(--accent-color);
+            background-color: var(--secondary-color);
             transition: width 0.3s;
         }
         
@@ -177,156 +182,235 @@
         }
         
 /* =====================================================
-   HERO
+   HERO - VERSIÓN SIN LOGO
 ===================================================== */
 
 .hero {
-  margin-top: -9px;
-  position: relative;
-  background: url('assets/img/fondo.png') center/cover no-repeat;
-  padding: 140px 20px 100px;
+    position: relative;
+    background: url('assets/img/fondo.jpg') center/cover no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start; /* Cambiado de center a flex-start */
+    justify-content: center;
+    margin-top: -9px;
+    padding-top: 15vh; /* Espacio desde arriba */
 }
 
+/* Overlay naranja con desenfoque */
 .hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(232, 119, 34, 0.25);
-  backdrop-filter: blur(2px);
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(232, 119, 34, 0.25);
+    backdrop-filter: blur(2px);
+    z-index: 1;
 }
 
-.hero-content-grid {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-  text-align: center;
+/* Contenedor principal */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1600px;
+    padding: 0 8vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100vh; /* Ocupa toda la altura */
+    justify-content: space-between; /* Distribuye espacio entre título y botones */
 }
 
-.hero-logo-big {
-  width: 55%;
-  margin: auto;
-}
-
-.typing-animation {
-  font-size: clamp(2rem, 5vw, 4.2rem);
-  color: white;
-  text-shadow: 2px 2px 10px rgba(0,0,0,.7);
-}
-
-.fade-in-up {
-  font-size: clamp(1.1rem, 2.5vw, 2.1rem);
-  color: var(--secondary-color);
-  margin-top: 10px;
-}
-
-.hero-cta {
-  margin-top: 30px;
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.cta-button {
-  padding: 14px 28px;
-  border-radius: 40px;
-  text-decoration: none;
-  font-weight: 700;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.cta-button.primary {
-  background: var(--secondary-color);
-  color: white;
-}
-
-.cta-button.secondary {
-  border: 2px solid white;
-  color: white;
-}
-
-/* OVERLAY NARANJA DIFUSO */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(2px); /* desenfoque REAL */
-  background: rgba(232, 119, 34, 0.25); /* opcional: velo naranja suave */
-  z-index: 1;
-}
-
-
-/* ASEGURAR QUE EL CONTENIDO ESTÉ POR ENCIMA */
-.hero-content-grid {
-  position: relative;
-  z-index: 2;
+/* Título y subtítulo */
+.hero-title-container {
+    margin-top: 10vh; /* Ajusta esta distancia desde arriba */
 }
 
 .highlight {
     color: var(--secondary-color);
 }
 
-.hero {
-  padding: 140px 20px 120px;
+.hero-title {
+    font-size: 3.3rem;
+    color: white !important;
+    font-weight: 1000;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
-.hero-content-grid {
-  max-width: 100%;
-  padding: 0 5vw;
+.hero-subtitle {
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    color: #c6e2ed !important;
+    font-style: italic;
+    font-weight: 300;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.hero .fade-in-up {
-    color: var(--secondary-color) !important;
+/* Contenedor de botones - ABAJO */
+.hero-cta-container {
+    width: 100%;
+    margin-bottom: 20vh; /* Ajusta esta distancia desde abajo */
 }
 
-/* Botones CTA */
 .hero-cta {
     display: flex;
-    gap: 1rem;
+    gap: 30px;
     justify-content: center;
-    margin-top: 2rem;
     flex-wrap: wrap;
 }
 
+/* Botones */
 .cta-button {
-    padding: 1rem 2rem;
-    font-size: 1.05em;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 12px;
+    padding: 18px 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
+/* Botón primario */
 .cta-button.primary {
     background: var(--secondary-color);
     color: white;
+    box-shadow: 0 4px 20px rgba(255, 110, 66, 0.4);
 }
 
-.cta-button.secondary {
-    /* 🎨 ESTÉTICO: Botón de Contorno (Ghost Button) */
-    background: transparent;
-    color: white; 
-    border: 2px solid white; 
-}
-
-.cta-button:hover {
+.cta-button.primary:hover {
+    background: #e85a31;
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 30px rgba(255, 110, 66, 0.5);
+}
+
+/* Botón secundario */
+.cta-button.secondary {
+    background: var(--primary-color) !important;
+    color: white !important;
+    border-color: var(--primary-color) !important;
 }
 
 .cta-button.secondary:hover {
-    /* 🎨 ESTÉTICO: Hover sutil para Ghost Button */
-    background: rgba(255, 255, 255, 0.2); 
-    color: white;
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+/* Tablet */
+@media (max-width: 992px) {
+    .hero {
+        padding-top: 12vh;
+    }
+    
+    .hero-title-container {
+        margin-top: 8vh;
+    }
+    
+    .hero-cta-container {
+        margin-bottom: 15vh;
+    }
+    
+    .hero-cta {
+        gap: 20px;
+    }
+    
+    .cta-button {
+        padding: 16px 32px;
+    }
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 90vh;
+        padding-top: 10vh;
+    }
+    
+    .hero-content {
+        height: 90vh;
+    }
+    
+    .hero-title-container {
+        margin-top: 6vh;
+    }
+        
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .hero-cta-container {
+        margin-bottom: 12vh;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .cta-button {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        padding: 16px 28px;
+        font-size: 1rem;
+    }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .hero {
+        min-height: 85vh;
+        padding-top: 8vh;
+    }
+    
+    .hero-title-container {
+        margin-top: 5vh;
+    }
+    
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-cta-container {
+        margin-bottom: 10vh;
+    }
+    
+    .cta-button {
+        padding: 14px 24px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Pantallas grandes */
+@media (min-width: 1400px) {
+    .hero-title-container {
+        margin-top: 12vh;
+    }
+        
+    .hero-subtitle {
+        font-size: 2.2rem;
+    }
+    
+    .hero-cta-container {
+        margin-bottom: 25vh;
+    }
+    
+    .cta-button {
+        padding: 20px 45px;
+        font-size: 1.2rem;
+    }
 }
 
 /* Animaciones keyframes */
@@ -367,73 +451,323 @@
         
         .section-title p {
             /* 🎨 ESTÉTICO: Tamaño ajustado para jerarquía */
-            font-size: 1.1em;
-            color: var(--secondary-text-color); 
-            max-width: 800px;
+            font-size: 1.8em;
+            color: var(--prim); 
+            max-width: 1000px !important;
             margin: 0 auto;
             font-weight: 300;
         }
         
-        /* Sección Qué Hacemos */
-        #que-hacemos {
-            background-color: #ffffff;
+         #que-hacemos {
+            background-color: #e6e3de;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
         }
         
-        .services {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-            margin-top: 50px;
+        .services-container {
+            position: relative;
+            z-index: 1;
         }
-
-        .service-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            flex: 1;
-            min-width: 250px;
-            max-width: 280px;
-            /* 🎨 ESTÉTICO: Sombras en capas (más suave y moderno) */
-            box-shadow: 0 10px 30px rgba(40, 31, 22, 0.08), 0 5px 15px rgba(40, 31, 22, 0.05);
-            transition: all 0.3s ease;
+        
+        /* ENCABEZADO MEJORADO */
+        .section-title {
             text-align: center;
-            border: 2px solid transparent;
+            margin-bottom: 70px;
         }
         
-        .service-card:hover {
-            transform: translateY(-12px);
-            /* 🎨 ESTÉTICO: Sombra de hover más pronunciada */
-            box-shadow: 0 20px 45px rgba(40, 31, 22, 0.25);
-            border-color: var(--light-accent);
-        }
-        
-        .service-icon {
-            font-size: 3.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 25px;
-        }
-        
-        .service-card h3 {
-            margin-bottom: 20px;
+        .section-title h2 {
+            font-size: 3.2rem;
             color: var(--primary-color);
-            font-size: 1.4em;
-            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
         }
         
-        .service-card p {
-            color: var(--secondary-text-color); 
-            font-weight: 300;
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--secondary-text-color);
+            max-width: 600px;
+            margin: 25px auto 0;
             line-height: 1.6;
         }
         
+        /* GRID DE SERVICIOS PRINCIPALES */
+        .services-main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        /* TARJETAS PRINCIPALES - DISEÑO ELEGANTE */
+        .service-main-card {
+            background: linear-gradient(145deg, #ffffff, #f8f7f4);
+            padding: 45px 40px;
+            box-shadow: 
+                0 8px 30px rgba(40, 31, 22, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(40, 31, 22, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-main-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-color), #ff8e6b);
+        }
+        
+        .service-main-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 
+                0 20px 50px rgba(40, 31, 22, 0.12),
+                0 8px 20px rgba(255, 110, 66, 0.15);
+            border-color: rgba(255, 110, 66, 0.2);
+        }
+        
+        .service-main-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+        
+        .service-main-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--secondary-color), #ff8e6b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 25px;
+            flex-shrink: 0;
+            box-shadow: 0 10px 20px rgba(255, 110, 66, 0.2);
+        }
+        
+        .service-main-icon i {
+            font-size: 2.2rem;
+            color: white;
+        }
+        
+        .service-main-title {
+            flex: 1;
+        }
+        
+        .service-main-title h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .service-tag {
+            display: inline-block;
+            background: rgba(255, 110, 66, 0.1);
+            color: var(--secondary-color);
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 110, 66, 0.2);
+        }
+        
+        .service-main-content p {
+            color: var(--secondary-text-color);
+            line-height: 1.7;
+            font-size: 1.05rem;
+            margin-bottom: 0;
+        }
+        
+        /* SERVICIOS SECUNDARIOS - DISEÑO REFINADO */
+        .services-secondary-title {
+            text-align: center;
+            margin: 80px 0 40px;
+            position: relative;
+        }
+        
+        .services-secondary-title h4 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            display: inline-block;
+            background: var(--light-color);
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .services-secondary-title::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(40, 31, 22, 0.1) 20%, 
+                rgba(40, 31, 22, 0.1) 80%, 
+                transparent 100%);
+        }
+        
+        .services-secondary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .service-secondary-card {
+            background: white;
+            padding: 35px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(40, 31, 22, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        
+        .service-secondary-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(40, 31, 22, 0.1);
+        }
+        
+        .service-secondary-card:hover::before {
+            opacity: 1;
+        }
+        
+        .service-secondary-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 110, 66, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .service-secondary-card:hover .service-secondary-icon {
+            background: rgba(255, 110, 66, 0.15);
+            transform: scale(1.1);
+        }
+        
+        .service-secondary-icon i {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+        }
+        
+        .service-secondary-card h5 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .service-secondary-card p {
+            color: var(--secondary-text-color);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+        
+        /* RESPONSIVE ELEGANTE */
+        @media (max-width: 1200px) {
+            .services-secondary-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .services-main-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .service-main-card {
+                padding: 40px 35px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #que-hacemos {
+                padding: 80px 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title p {
+                font-size: 1.1rem;
+            }
+            
+            .service-main-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .service-main-icon {
+                margin: 0 auto 20px;
+            }
+            
+            .services-secondary-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .service-secondary-card {
+                padding: 30px 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .service-main-card {
+                padding: 35px 25px;
+            }
+            
+            .service-main-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .service-main-icon i {
+                font-size: 1.8rem;
+            }
+            
+            .service-main-title h3 {
+                font-size: 1.5rem;
+            }
+        }
+                
 /* Sección mi.Borde - Timeline Interactivo */
 #mi-borde {
-   background:
-        linear-gradient(rgba(248, 245, 240, 0.8), rgba(248, 245, 240, 0.85)),
-        url('assets/img/TRAMA-09.png');
-    background-size: 600px;
-    background-position: center;
+      background: 
+        linear-gradient(rgba(248, 247, 244, 0.7), rgba(248, 247, 244, 0.85)),
+        url('assets/img/back-web-18.png') center/cover no-repeat;
+        background-attachment: fixed; /* Efecto parallax */
 }
 
 .section-header {
@@ -446,7 +780,6 @@
     background: var(--secondary-color);
     color: white;
     padding: 8px 20px;
-    border-radius: 25px;
     font-weight: 600;
     font-size: 0.9em;
     margin-bottom: 20px;
@@ -484,7 +817,6 @@
 
 .demo-screen {
     position: relative;
-    border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     border: 3px solid var(--primary-color);
@@ -559,7 +891,7 @@
     background: var(--secondary-color);
     color: white;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: 600;
     font-size: 1.1em;
     transition: all 0.3s;
@@ -684,7 +1016,6 @@
         
         .project-card {
             background-color: white;
-            border-radius: 15px;
             width: calc(25% - 25px);
             /* 🎨 ESTÉTICO: Sombras en capas (más suave y moderno) */
             box-shadow: 0 10px 30px rgba(40, 31, 22, 0.08), 0 5px 15px rgba(40, 31, 22, 0.05);
@@ -704,7 +1035,7 @@
         
         .project-image {
             width: 100%;
-            height: 220px;
+            height: 120px;
             object-fit: cover;
             transition: transform 0.5s;
         }
@@ -719,15 +1050,18 @@
         }
         
         .project-status {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-size: 0.8em;
-            font-weight: 600;
-            color: white;
-            font-family: 'Rubik', sans-serif;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 8px 15px;
+        border-radius: 10px;
+        font-size: 0.8em;
+        font-weight: 600;
+        color: white; /* Texto blanco por defecto */
+        font-family: 'ZalandoSans', sans-serif;
+        z-index: 2; /* Asegura que esté sobre la imagen */
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
         }
         
         .status-completed {
@@ -777,11 +1111,10 @@
         
         /* Sección Colaboradores */
         #colaboradores {
-        background:
-        linear-gradient(rgba(248, 245, 240, 0.6), rgba(248, 245, 240, 0.65)),
-        url('assets/img/TRAMA-08.png');
-    background-size: 600px;
-    background-position: center;
+        background: 
+        linear-gradient(rgba(248, 247, 244, 0.7), rgba(248, 247, 244, 0.85)),
+        url('assets/img/back-web-18.png') center/cover no-repeat;
+        background-attachment: fixed; /* Efecto parallax */
         }
         
         .collaborators-grid {
@@ -842,7 +1175,7 @@
         
         /* Footer */
         footer {
-            background: var(--dark-color);
+            background: var(--secondary-color);
             color: white;
             padding: 70px 20px 30px;
         }
@@ -851,7 +1184,6 @@
             /* 🎨 ESTÉTICO: Tamaño ajustado para mejor balance en el footer */
             height: 60px;   
             width: auto;
-            filter: invert(1) brightness(2);
         }
         
         .footer-content {
@@ -886,7 +1218,7 @@
         }
         
         .footer-column a:hover {
-            color: var(--accent-color);
+            color: var(--primary);
             transform: translateX(5px);
         }
         
@@ -916,8 +1248,8 @@
             text-align: center;
             padding-top: 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.95em;
+            color: var(--primary-color);
+            font-size: 0.75rem;
             font-weight: 300;
         }
         
@@ -932,12 +1264,7 @@
             .project-card {
                 width: calc(50% - 25px);
             }
-            
-            /* 🎨 ESTÉTICO: Ajuste para el hero en responsive */
-            .typing-animation {
-                font-size: 2.8rem;
-            }
-            
+                        
             .fade-in-up {
                 font-size: 1.2em;
             }
@@ -997,10 +1324,6 @@
                 padding: 0 20px;
             }
             
-            .typing-animation {
-                font-size: 2.2em;
-            }
-            
             .fade-in-up {
                 font-size: 1.1em;
             }
@@ -1041,11 +1364,6 @@
                 font-size: 1.1em;
             }
 			
-			 .typing-animation {
-    font-size: 1.8rem;
-    line-height: 1.2;
-  }
-
   .fade-in-up {
     font-size: 1rem;
           }
@@ -1057,7 +1375,7 @@
   .cta-button {
     padding: 10px 18px;
     font-size: 0.9rem;
-    border-radius: 32px;
+    border-radius: 10px;
   }
 
   .cta-button i {
@@ -1167,7 +1485,7 @@
 <nav id="navbar">
     <div class="nav-container">
         <div class="logo">
-        <img src="assets/icons/Recurso5.svg" alt="Logo de Borde. Consultoría Urbana" class="logo-img">
+        <img src="assets/icons/Recurso3.svg" alt="Logo de Borde. Consultoría Urbana" class="logo-img">
 			
         </div>
         
@@ -1187,118 +1505,120 @@
 </nav>
 
 <section class="hero">
-  <div class="hero-content-grid">
-
-    <!-- IZQUIERDA: LOGO GRANDE -->
-    <div class="hero-left">
-      <img src="assets/icons/Recurso2.svg" alt="Logo Borde" class="hero-logo-big">
+    <div class="hero-content">
+        <!-- Logo y slogan en línea -->
+        <div class="hero-header">
+                <div class="hero-title-container">
+                <h1 class="hero-title">Trabajamos en el <img src="assets/icons/Recurso5.svg" alt="Borde" class="logo-in-text"></h1>
+                <p class="hero-subtitle">Transformamos límites para proyectar el futuro</p>
+            </div>
+        </div>
+        
+        <!-- Botones en la mitad inferior -->
+        <div class="hero-cta-container">
+            <div class="hero-cta">
+                <a href="#mi-borde" class="cta-button primary">
+                    <i class="bi bi-rocket-takeoff"></i> Descubrir mi.Borde
+                </a>
+                <a href="#proyectos" class="cta-button secondary">
+                    <i class="bi bi-eye"></i> Ver Proyectos
+                </a>
+            </div>
+        </div>
     </div>
-
-    <!-- DERECHA: TEXTO EXACTO QUE TENÍAS -->
-    <div class="hero-right">
-      <h1 class="typing-animation">Trabajamos en el <span class="highlight">Borde.</span></h1>
-      <p class="fade-in-up">Transformamos límites para proyectar el futuro</p>
-
-      <div class="hero-cta">
-        <a href="#mi-borde" class="cta-button primary">
-          <i class="bi bi-rocket-takeoff"></i> Descubrir mi.Borde
-        </a>
-        <a href="#proyectos" class="cta-button secondary">
-          <i class="bi bi-eye"></i> Proyectos
-        </a>
-      </div>
-    </div>
-
-  </div>
 </section>
 
 
 <section id="que-hacemos">
     <div class="container">
         <div class="section-title">
-            <h2>¿Qué hacemos?</h2>
-            <p class="light">Consultoría con enfoque integral, te acompañamos durante todo el proceso</p>
+            <h2>Nuestros Servicios</h2>
+            <p class="light">Soluciones integrales para el desarrollo urbano, desde la planificación hasta la ejecución</p>
         </div>
         
-	<div class="services-wrapper">
-
-    <button class="services-arrow left">
-        <i class="bi bi-chevron-left"></i>
-    </button>
-
-    <div class="services-slider">
-			
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="bi bi-buildings"></i>
+        <div class="services-container">
+            <!-- SERVICIOS PRINCIPALES -->
+            <div class="services-main-grid">
+                <!-- SERVICIO PRINCIPAL 1 -->
+                <div class="service-main-card">
+                    <div class="service-main-header">
+                        <div class="service-main-icon">
+                            <i class="bi bi-buildings"></i>
+                        </div>
+                        <div class="service-main-title">
+                            <h3>Diseño Urbanístico y Análisis Normativo</h3>
+                            <span class="service-tag">Servicio Destacado</span>
+                        </div>
+                    </div>
+                    <div class="service-main-content">
+                        <p>Estudiamos las normativas vigentes de cada área/zona/distrito para crear diseños reales y factibles de loteos urbanos. Nuestro trabajo asegura la factibilidad catastral y la materialización efectiva de la urbanización en el territorio.</p>
+                    </div>
                 </div>
-                <h3>PLANIFICACIÓN</h3>
-                <p class="light">Diseño y desarrollo de loteos urbanos conforme a normativas vigentes en todas las localidades de la Provincia de Santa Fe</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="bi bi-droplet"></i>
+                
+                <!-- SERVICIO PRINCIPAL 2 -->
+                <div class="service-main-card">
+                    <div class="service-main-header">
+                        <div class="service-main-icon">
+                            <i class="bi bi-map"></i>
+                        </div>
+                        <div class="service-main-title">
+                            <h3>Mapa Interactivo mi.Borde</h3>
+                            <span class="service-tag">Servicio Destacado</span>
+                        </div>
+                    </div>
+                    <div class="service-main-content">
+                        <p>Sistemas de Información Geográfica personalizados con mapas interactivos que facilitan análisis espaciales avanzados, optimizando la toma de decisiones, administración y comercialización de proyectos urbanos.</p>
+                    </div>
                 </div>
-                <h3>ESTUDIOS HÍDRICOS Y AMBIENTALES</h3>
-                <p class="light">Análisis de drenaje urbano, gestión de recursos hídricos y evaluaciones de impacto ambiental</p>
             </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="bi bi-tools"></i>
+                 
+            <div class="services-secondary-grid">
+                <!-- SERVICIO 3 -->
+                <div class="service-secondary-card">
+                    <div class="service-secondary-icon">
+                        <i class="bi bi-clipboard-data"></i>
+                    </div>
+                    <h5>Administración y Gestión</h5>
+                    <p>Gestión integral de proyectos urbanos, desde la planificación hasta la comercialización, con herramientas especializadas para optimizar resultados.</p>
                 </div>
-                <h3>OBRAS DE INGENIERÍA</h3>
-                <p class="light">Proyecto, dirección y ejecución de obras de infraestructura urbana, vialidad y servicios</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="bi bi-clipboard-data"></i>
+                
+                <!-- SERVICIO 4 -->
+                <div class="service-secondary-card">
+                    <div class="service-secondary-icon">
+                        <i class="bi bi-droplet"></i>
+                    </div>
+                    <h5>Factibilidades Hídricas y Ambientales</h5>
+                    <p>Gestión estratégica para la aprobación de estudios de factibilidad según normativas provinciales vigentes.</p>
                 </div>
-                <h3>ADMINISTRACIÓN Y GESTIÓN</h3>
-                <p class="light">Gestión integral de proyectos urbanos, desde la planificación hasta su comercialización. Ofrecemos herramientas para administrar y vender tu proyecto</p>
+                
+                <!-- SERVICIO 5 -->
+                <div class="service-secondary-card">
+                    <div class="service-secondary-icon">
+                        <i class="bi bi-tools"></i>
+                    </div>
+                    <h5>Obras de Ingeniería</h5>
+                    <p>Gestión completa de proyectos de infraestructura urbana, incluyendo dirección y ejecución de obras.</p>
+                </div>
+                
+                <!-- SERVICIO 6 -->
+                <div class="service-secondary-card">
+                    <div class="service-secondary-icon">
+                        <i class="bi bi-mortarboard"></i>
+                    </div>
+                    <h5>Capacitaciones</h5>
+                    <p>Formación especializada en agrimensura, planificación urbana y Sistemas de Información Geográfica aplicados.</p>
+                </div>
             </div>
-			
-			<div class="service-card">
-				<div class="service-icon">
-				<i class="bi bi-map"></i>
-			</div>
-			<h3>SOLUCIONES SIG</h3>
-			<p class="light">
-				Desarrollo de Sistemas de Información Geográfica, mapas interactivos, visualizadores web y análisis espacial para la toma de decisiones
-			</p>
-			</div>
-			
-			<div class="service-card">
-			<div class="service-icon">
-				<i class="bi bi-mortarboard"></i>
-			</div>
-				<h3>CAPACITACIONES</h3>
-			<p class="light">
-				Formación y capacitación en agrimensura, planificación urbana, SIG y herramientas digitales aplicadas al desarrollo urbano
-			</p>
-	</div>
-	
-	  <!-- Flecha derecha -->
-    <button class="services-arrow right" aria-label="Siguiente">
-        <i class="bi bi-chevron-right"></i>
-    </button>
-
-</div>
-
-
         </div>
     </div>
 </section>
 
 <section id="mi-borde">
     <div class="container">
-        <div class="section-header">
+        <div class="section-title">
             <h2>¿Conoces mi.Borde?</h2>
             <p>Administrador y visualizador de urbanizaciones a través de mapas interactivos</p>
-        </div>
-        
+        </div>        
         <div class="platform-showcase">
             <div class="platform-demo">
                 <div class="demo-screen">
@@ -1320,7 +1640,7 @@
                         <div class="timeline-marker">1</div>
                         <div class="timeline-content">
                             <h4>Rápido</h4>
-                            <p class="light">Le vamos a dar vida a tu proyecto en 72hs</p>
+                            <p class="light">Le vamos a dar vida a tu proyecto con celeridad</p>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -1357,7 +1677,7 @@
         <div class="project-gallery">
             <div class="project-card">
                 <span class="project-status status-completed">FINALIZADO</span>
-                <img src="https://images.unsplash.com/photo-1628158145409-9e222b56cc0b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3VydmV5aW5nfGVufDB8fDB8fHww" alt="Loteo La Candelaria" class="project-image">
+                <img src="assets/img/back-web-20.png" alt="Loteo La Candelaria" class="project-image">
                 <div class="project-content">
                     <h3>Loteo "La Candelaria"</h3>
                     <p class="light">Diseño y mensura para urbanización en la localidad de Recreo, Santa Fe</p>
@@ -1367,7 +1687,7 @@
             
             <div class="project-card">
                 <span class="project-status status-progress">EN CURSO</span>
-                <img src="https://images.unsplash.com/photo-1610079874911-4487134bc8b9?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Barrio Privado La Lucila" class="project-image">
+                <img src="assets/img/back-web-20.png" alt="Barrio Privado La Lucila" class="project-image">
                 <div class="project-content">
                     <h3>Barrio Privado "La Lucila"</h3>
                     <p class="light">Diseño para barrio privado "La Lucila" en la localidad de Santo Tomé</p>
@@ -1377,7 +1697,7 @@
             
             <div class="project-card">
                 <span class="project-status status-planned">PROYECTO</span>
-                <img src="https://images.unsplash.com/photo-1610081339528-3e05c5969922?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Relevamiento para Complejo Turistico" class="project-image">
+                <img src="assets/img/back-web-20.png" alt="Relevamiento para Complejo Turistico" class="project-image">
                 <div class="project-content">
                     <h3>Relevamiento para Complejo Turístico</h3>
                     <p class="light">Relevamiento para proyecto de Complejo Turístico y estudios preliminares en la localidad de Arroyo Leyes</p>
@@ -1387,7 +1707,7 @@
             
             <div class="project-card">
                 <span class="project-status status-completed">FINALIZADO</span>
-                <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Relevamiento para Estudio Hídrico" class="project-image">
+                <img src="assets/img/back-web-20.png" alt="Relevamiento para Estudio Hídrico" class="project-image">
                 <div class="project-content">
                     <h3>Relevamiento para Estudio Hídrico</h3>
                     <p class="light">Red de Puntos de Apoyo para relevamiento con drone para estudio hídrico en cuenca urbana de la localidad de Santa Fe</p>
@@ -1401,41 +1721,25 @@
 <section id="colaboradores">
     <div class="container">
         <div class="section-title">
-            <h2>Confían en nosotros</h2>
+            <h2>Trabajan con nosotros</h2>
             <p class="light">Trabajamos en equipo para garantizar que tu proyecto se vuelva realidad</p>
         </div>
         
         <div class="collaborators-grid">
             <div class="collaborator-card">
                 <div class="collaborator-logo">
-                    <img src="https://cdn-icons-png.flaticon.com/128/2318/2318375.png" alt="Logo de Arquitectura & Diseño"> 
+                    <img src="assets/img/logo-bygga.png" alt="Logo de Arquitectura & Diseño"> 
                 </div>
-                <div class="collaborator-name">Arquitectura & Diseño</div>
-                <div class="collaborator-type light">Arquitectura</div>
+                <div class="collaborator-name">Arquitectura & Urbanismo</div>
+                <div class="collaborator-type light">Arq. Francisco Gil</div>
             </div>
             
             <div class="collaborator-card">
                 <div class="collaborator-logo">
-                    <img src="https://cdn-icons-png.flaticon.com/128/3418/3418412.png" alt="Logo de Ingeniería Integral"> 
+                    <img src="assets/img/logo-eproin.png" alt="Logo de Ingeniería Integral"> 
                 </div>
                 <div class="collaborator-name">Ingeniería Integral</div>
-                <div class="collaborator-type light">Ingeniería Civil</div>
-            </div>
-            
-            <div class="collaborator-card">
-                <div class="collaborator-logo">
-                    <img src="https://cdn-icons-png.flaticon.com/128/1606/1606208.png" alt="Logo de Constructora Norte"> 
-                </div>
-                <div class="collaborator-name">Constructora Norte</div>
-                <div class="collaborator-type light">Constructora</div>
-            </div>
-            
-            <div class="collaborator-card">
-                <div class="collaborator-logo">
-                    <img src="https://cdn-icons-png.flaticon.com/128/2716/2716770.png" alt="Logo de Desarrollos Urbanos"> 
-                </div>
-                <div class="collaborator-name">Desarrollos Urbanos</div>
-                <div class="collaborator-type light">Desarrolladora</div>
+                <div class="collaborator-type light">EPROIN SRL</div>
             </div>
         </div>
     </div>
@@ -1448,13 +1752,14 @@
     <img src="assets/icons/Recurso3.svg" alt="Logo de Borde. Pie de página" class="footer-logo-img">
 </div>
             <div class="social-links">
-                <a href="https://www.facebook.com/datumestudio"><i class="bi bi-facebook"></i></a>
-                <a href="https://www.instagram.com/datumestudio/"><i class="bi bi-instagram"></i></a>
-                <a href="https://www.linkedin.com/company/datum-estudio/"><i class="bi bi-linkedin"></i></a>
+                <a href="https://www.instagram.com/borde.cu/"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/borde-cu/"><i class="bi bi-linkedin"></i></a>
             </div>
         </div>
 
         <div class="footer-column">
+
+
         </div>
 
         <div class="footer-column">
