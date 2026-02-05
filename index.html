@@ -8,12 +8,15 @@
     <meta name="description" content="BORDE. Consultoría Urbana en Santa Fe. Planificación, Estudios Hídricos, Ingeniería y Administración de loteos y desarrollos urbanos.">
     <style>
 	
-	@font-face {
+@font-face {
     font-family: 'ZalandoSans';
-    src: url('assets/fonts/ZalandoSans-Light.ttf') format('truetype');
+    src: url('assets/fonts/ZalandoSans-Light.woff2') format('woff2'),
+         url('assets/fonts/ZalandoSans-Light.ttf') format('truetype');
     font-weight: 400;
-    font-display: swap; 
+    font-display: swap;
+    unicode-range: U+0000-00FF; /* Solo caracteres latinos */
 }
+
 
 @font-face {
     font-family: 'ZalandoSans';
@@ -86,28 +89,26 @@
             font-weight: 900;
         }
         
-        /* Navegación */
         nav {
-            background: var(--secondary-color);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 15px 40px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-        }
+    background: var(--secondary-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 40px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
 
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-        }
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
         
         .logo {
             font-size: 1.8em;
@@ -127,59 +128,115 @@
 }
 
 .logo-in-text {
-    height: 8rem; /* Proporcional al tamaño del texto */
+    height: clamp(2.5rem, 5vw, 4rem); /* Proporcional al tamaño del texto */
     width: auto;
     vertical-align: middle; /* Alineación con el texto */
     margin-left: 0.3em; /* Espaciado del texto anterior */
     display: inline-block;
     filter: brightness(0) invert(1); /* Logo blanco si es necesario */
+    transform: translateY(-0.1em); /* Ajuste fino de alineación */
 }
-        
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-menu a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            position: relative;
-            padding: 5px 0;
-        }
-        
-        .nav-menu a:hover {
-            color: var(--secondary-color);
-        }
-        
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--secondary-color);
-            transition: width 0.3s;
-        }
-        
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-		
-		.nav-highlight {
-    font-weight: 700 !important;
+
+/* MENU DE NAVEGACIÓN (Desktop) */
+.nav-menu {
+    display: flex;
+    gap: 10px;
+    list-style: none;
 }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+
+.nav-menu a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 8px 8px;
+    border-radius: 0px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-menu a:hover {
+    background: rgba(40, 31, 22, 0.1);
+    color: white;
+}
+
+.nav-menu a.nav-highlight {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(40, 31, 22, 0.3);
+}
+
+.nav-menu a.nav-highlight:hover {
+    background: #1a140f;
+    transform: translateY(-2px);
+}
+
+/* BOTÓN MENÚ MÓVIL (oculto en desktop) */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* =====================================================
+   RESPONSIVE NAVBAR
+===================================================== */
+
+@media (max-width: 992px) {
+    nav {
+        padding: 12px 20px;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    /* MENÚ MÓVIL (oculto por defecto) */
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--secondary-color);
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .nav-menu a {
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-menu a:last-child {
+        border-bottom: none;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 10px 15px;
+    }
+    
+    .logo-img {
+        height: 40px;
+    }
+    
+    .nav-menu {
+        padding: 15px;
+    }
+}
         
 /* =====================================================
    HERO - VERSIÓN SIN LOGO
@@ -187,13 +244,12 @@
 
 .hero {
     position: relative;
-    background: url('assets/img/fondo.jpg') center/cover no-repeat;
+    background: url('assets/img/fondo.webp') center/cover no-repeat;
     min-height: 100vh;
+    padding-top: 10vh; /* Reducido */
     display: flex;
-    align-items: flex-start; /* Cambiado de center a flex-start */
+    align-items: center; /* Cambiado de flex-start */
     justify-content: center;
-    margin-top: -9px;
-    padding-top: 15vh; /* Espacio desde arriba */
 }
 
 /* Overlay naranja con desenfoque */
@@ -231,11 +287,30 @@
 }
 
 .hero-title {
-    font-size: 3.3rem;
+    font-size: clamp(1.8rem, 4vw + 1rem, 3.3rem);
     color: white !important;
     font-weight: 1000;
     max-width: 1600px;
     margin: 0 auto;
+    line-height: 1.3;
+    text-align: center;
+    padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        line-height: 1.4;
+        font-weight: 900; /* Un poco menos de peso en móvil */
+        letter-spacing: -0.5px; /* Ajustar kerning */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: clamp(1.6rem, 5vw + 0.5rem, 2rem);
+        line-height: 1.4;
+        padding: 0 15px;
+    }
 }
 
 .hero-subtitle {
@@ -269,7 +344,7 @@
     font-size: 1.1rem;
     font-weight: 700;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 0 10px 0 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 2px solid transparent;
     text-transform: uppercase;
@@ -302,6 +377,8 @@
     box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
 }
 
+
+
 /* =====================================================
    RESPONSIVE
 ===================================================== */
@@ -311,11 +388,7 @@
     .hero {
         padding-top: 12vh;
     }
-    
-    .hero-title-container {
-        margin-top: 8vh;
-    }
-    
+        
     .hero-cta-container {
         margin-bottom: 15vh;
     }
@@ -339,11 +412,7 @@
     .hero-content {
         height: 90vh;
     }
-    
-    .hero-title-container {
-        margin-top: 6vh;
-    }
-        
+            
     .hero-subtitle {
         font-size: 1.2rem;
     }
@@ -377,7 +446,6 @@
     .hero-title-container {
         margin-top: 5vh;
     }
-    
     
     .hero-subtitle {
         font-size: 1.1rem;
@@ -460,14 +528,14 @@
         
          #que-hacemos {
             background-color: #e6e3de;
-            padding: 100px 20px;
+            padding: 100px;
             position: relative;
             overflow: hidden;
         }
         
         .services-container {
             position: relative;
-            z-index: 1;
+            z-index: 1;      
         }
         
         /* ENCABEZADO MEJORADO */
@@ -655,22 +723,17 @@
         .service-secondary-icon {
             width: 60px;
             height: 60px;
-            background: rgba(255, 110, 66, 0.08);
+            background: var(--accent-color);
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 25px;
             transition: all 0.3s ease;
         }
-        
-        .service-secondary-card:hover .service-secondary-icon {
-            background: rgba(255, 110, 66, 0.15);
-            transform: scale(1.1);
-        }
-        
+                
         .service-secondary-icon i {
             font-size: 1.8rem;
-            color: var(--secondary-color);
+            color: var(--primary-color);
         }
         
         .service-secondary-card h5 {
@@ -761,6 +824,18 @@
                 font-size: 1.5rem;
             }
         }
+/* Mobile first approach */
+/* Base: 320px - 575px (móviles) */
+
+@media (min-width: 1200px) {
+    /* Desktops grandes */
+    .container { max-width: 1200px; }
+}
+
+@media (min-width: 1400px) {
+    /* Pantallas extra grandes */
+    .container { max-width: 1320px; }
+}
                 
 /* Sección mi.Borde - Timeline Interactivo */
 #mi-borde {
@@ -1009,7 +1084,7 @@
         .project-gallery {
             display: flex;
             flex-wrap: wrap;
-            gap: 25px;
+            gap: 20px;
             justify-content: center;
             margin: 70px 0;
         }
@@ -1210,7 +1285,7 @@
         
         .footer-column p, .footer-column a {
             margin-bottom: 12px;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--primary-color);
             text-decoration: none;
             display: block;
             transition: all 0.3s;
@@ -1246,12 +1321,347 @@
         
         .copyright {
             text-align: center;
-            padding-top: 40px;
+            padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--primary-color);
-            font-size: 0.75rem;
+            font-size: 0.70rem;
             font-weight: 300;
         }
+
+      /* Sección Google Form */
+.google-form-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.google-form-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4285f4, #34a853, #fbbc05, #ea4335);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Encabezado */
+.form-intro {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.form-intro h2 {
+    font-size: 2.8rem;
+    color: #2d3748;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #4a5568;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+/* Grid de beneficios */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.benefit-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.benefit-card h4 {
+    color: #2d3748;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.benefit-card p {
+    color: #718096;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Botón principal */
+.form-cta {
+    text-align: center;
+    margin: 60px 0;
+}
+
+.google-form-btn {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, var(--accent-color) 0%, #9acfe0 100%);
+    color: var(--primary-color); /* Texto marrón oscuro para contraste */;
+    text-decoration: none;
+    padding: 25px 40px;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(66, 133, 244, 0.3);
+    border: none;
+    cursor: pointer;
+    min-width: 350px;
+    position: relative;
+    overflow: hidden;
+}
+
+.google-form-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.google-form-btn:hover::before {
+    left: 100%;
+}
+
+.google-form-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(66, 133, 244, 0.4);
+}
+
+.google-form-btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.btn-text {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.btn-subtext {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-weight: normal;
+}
+
+.security-note {
+    margin-top: 20px;
+    color: #718096;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.lock-icon {
+    font-size: 1rem;
+}
+
+/* Información adicional */
+.additional-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.info-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-left: 4px solid #4285f4;
+}
+
+.info-card h3 {
+    color: #2d3748;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+.contact-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #4285f4;
+    text-decoration: none;
+    padding: 12px 20px;
+    background: #f7fafc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+    background: #edf2f7;
+    transform: translateX(5px);
+}
+
+.contact-icon {
+    font-size: 1.2rem;
+}
+
+.process-steps {
+    list-style-type: none;
+    padding-left: 0;
+    counter-reset: step-counter;
+}
+
+.process-steps li {
+    counter-increment: step-counter;
+    margin-bottom: 15px;
+    padding-left: 40px;
+    position: relative;
+    color: #4a5568;
+}
+
+.process-steps li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #4285f4;
+    color: white;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #718096;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 30px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: #4285f4;
+    color: white;
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: #4a5568;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .google-form-section {
+        padding: 50px 0;
+    }
+    
+    .form-intro h2 {
+        font-size: 2.2rem;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .google-form-btn {
+        min-width: 100%;
+        padding: 20px;
+    }
+    
+    .additional-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-options {
+        flex-direction: column;
+    }
+}  
         
         /* Responsive */
         @media (max-width: 1200px) {
@@ -1294,21 +1704,13 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: var(--gradient-primary);
+                background: var(--secondary-color);
                 flex-direction: column;
                 padding: 25px;
                 gap: 20px;
                 box-shadow: 0 10px 30px rgba(0, 44, 43, 0.2);
             }
-            
-            .nav-menu.active {
-                display: flex;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
+                        
             .project-card {
                 width: 100%;
                 max-width: 400px;
@@ -1491,11 +1893,11 @@
         
         <div class="nav-menu">
             <a href="#" id="nav-inicio-scroll">Inicio</a> 
-            <a href="#que-hacemos">Qué Hacemos</a>
+            <a href="#que-hacemos">Servicios</a>
             <a href="#mi-borde" class="nav-highlight">mi.Borde</a>
             <a href="#proyectos">Proyectos</a>
             <a href="#colaboradores">Colaboradores</a>
-            <a href="#contacto">Contacto</a>
+            <a href="#consulta-gratuita">Contacto</a>
         </div>
         
         <button class="mobile-menu-btn">
@@ -1517,11 +1919,11 @@
         <!-- Botones en la mitad inferior -->
         <div class="hero-cta-container">
             <div class="hero-cta">
-                <a href="#mi-borde" class="cta-button primary">
-                    <i class="bi bi-rocket-takeoff"></i> Descubrir mi.Borde
-                </a>
                 <a href="#proyectos" class="cta-button secondary">
                     <i class="bi bi-eye"></i> Ver Proyectos
+                </a>
+                <a href="#mi-borde" class="cta-button primary">
+                    <i class="bi bi-rocket-takeoff"></i> Descubrir mi.Borde
                 </a>
             </div>
         </div>
@@ -1744,6 +2146,45 @@
         </div>
     </div>
 </section>
+        
+<section id="consulta-gratuita">
+    <div class="container">
+        <!-- Encabezado -->
+        <div class="section-title">
+            <h2>Solicitá tu consulta gratuita</h2>
+            <p class="light">Completa nuestro formulario y nos pondremos en contacto contigo en menos de 24 horas</p>
+        </div>
+        
+        <!-- Botón principal -->
+        <div class="form-cta">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfiDK89sCQn8MouegLy2gBbxC5gBeSgBtFIkjSVTreLMhwF2A/viewform?usp=header" 
+               target="_blank" 
+               class="google-form-btn" 
+               id="openFormBtn">
+                <span class="btn-text">Abrir formulario de consulta</span>
+                <span class="btn-subtext">(Se abrirá en nueva pestaña)</span>
+            </a>
+            
+            <p class="security-note">
+                <span class="lock-icon">🔒</span> 
+                Tus datos están protegidos por Google. No compartiremos tu información con terceros.
+            </p>
+        </div>
+
+<!-- Modal de confirmación (opcional) -->
+<div id="formModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>¡Perfecto!</h3>
+        <p>El formulario se abrirá en una nueva pestaña.</p>
+        <p>Por favor, completa todos los campos para que podamos entender mejor tu proyecto.</p>
+        <div class="modal-actions">
+            <button id="confirmOpen" class="btn-primary">Abrir formulario</button>
+            <button id="cancelOpen" class="btn-secondary">Cancelar</button>
+        </div>
+    </div>
+</div>
+</section>
 
 <footer id="contacto">
     <div class="footer-content">
@@ -1758,20 +2199,27 @@
         </div>
 
         <div class="footer-column">
-
-
-        </div>
+<h3>Equipo</h3>
+<div><strong>Angelina Poli</strong></div>
+<p class="light"></i> Msc. Ing. Agrimensora</p>
+<div><strong>Lucila L. Piedrabuena</strong></div>
+<p class="light"></i> Msc. Ing. Agrimensora</p>   
+</div>
 
         <div class="footer-column">
             <h3>Contacto</h3>
             <p class="light"><i class="bi bi-geo-alt"></i> Santa Fe, Argentina</p>
             <a href="mailto:borde.cu@gmail.com" class="light"><i class="bi bi-envelope"></i> Enviar correo</a>
             <a href="https://wa.me/5493424777230" target="_blank" class="light"><i class="bi bi-whatsapp"></i> Enviar mensaje</a>
+                <span style="color: var(--primary-color); font-size: 0.75rem;">
+                     Horario de atención: Lunes a Viernes 9 a 18hs
+                </span>
         </div>
     </div>
     
     <div class="copyright">
-        <p>© 2025 Borde. - Todos los derechos reservados.</p>
+        <p>© 2026 Borde. Todos los derechos reservados.</p>
+        Desarrollo y diseño web: <a href="https://www.linkedin.com/in/llpiedrabuena" target="_blank" rel="noopener noreferrer"> LLP</a>
     </div>
 </footer>
 
@@ -1863,6 +2311,25 @@ arrowRight.addEventListener('click', () => {
 });
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "BORDE. Consultora Urbana",
+  "description": "Consultoría especializada en planificación urbana y desarrollos inmobiliarios",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Santa Fe",
+    "addressCountry": "AR"
+  },
+  "telephone": "+54-342-4777230",
+  "url": "https://tudominio.com",
+  "sameAs": [
+    "https://www.instagram.com/borde.cu/",
+    "https://www.linkedin.com/company/borde-cu/"
+  ]
+}
+</script>
 
 </body>
 </html>
