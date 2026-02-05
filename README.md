@@ -18,25 +18,28 @@ Sitio web profesional para consultora urbana.
 
 ## 🔤 Tipografía
 
-**Montserrat** - Títulos y navegación
-- Pesos utilizados: 300 (Light), 400 (Regular), 500 (Medium), 600 (SemiBold), 700 (Bold), 800 (ExtraBold), 900 (Black)
+**ZalandoSans** - Títulos y navegación
+- Pesos utilizados: 300 (Light), 700 (Bold), 800 (ExtraBold)
 
 ## 🎯 Secciones del Sitio
 
 1. **Inicio** - Hero section con presentación
-2. **Qué Hacemos** - Servicios principales
-3. **mi.Borde** - Plataforma de administración
+2. **Servicios** - Servicios principales y secundarios
+3. **mi.Borde** - Acceso a plataforma mi.Borde
 4. **Proyectos** - Portfolio de trabajos realizados
-5. **Colaboradores** - Empresas asociadas
-6. **Contacto** - Información de contacto y redes
+5. **Colaboradores** - Empresas que trabajan con nosotros
+6. **Contacto** - Formulario de contacto integrado con Google Forms e información de contacto y redes en footer
 
 ## 📞 Contacto
 
+- Equipo:
+-- Ing. Agrim. Angelina Poli
+-- Ing. Agrim. Lucila L. Piedrabuena
 - Email: borde.cu@gmail.com
 - WhatsApp: +54 9 342 477-7230
 - Ubicación: Santa Fe, Argentina
-- LinkedIn: Datum Estudio
-- Instagram: @datumestudio
+- Instagram: @borde.cu
+- LinkedIn: borde-cu
 
 ## 🚧 Estado del Proyecto
 
